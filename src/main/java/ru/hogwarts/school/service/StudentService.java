@@ -10,24 +10,24 @@ import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
-    Map<Long, Student> students = new HashMap<>();
+    private final Map<Long, Student> students = new HashMap<>();
     private long lastIdStudent = 0;
 
-    public Student createStudent(Student student) {
+    public Student addStudent(Student student) {
         student.setId(++lastIdStudent);
         students.put(lastIdStudent, student);
         return student;
     }
-    public Student readStudent (Student student) {
-        return students.get(student);
+    public Student findStudent(long id) {
+        return students.get(id);
     }
-    public Student updateStudent(Student student) {
+    public Student editStudent(long id, Student student) {
         students.put(student.getId(), student);
         return student;
     }
 
-    public Student deleteStudent(Student student) {
-        return students.remove(student);
+    public Student deleteStudent(long id) {
+        return students.remove(id);
     }
 
     public Collection<Student> getAllStudentsByAge(int age) {
