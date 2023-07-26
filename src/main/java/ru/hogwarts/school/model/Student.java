@@ -6,13 +6,11 @@ public class Student {
     private Long id;
     private String name;
     private int age;
-    private Faculty faculty;
 
-    public Student(Long id, String name, int age, Faculty faculty) {
+    public Student(Long id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
-        this.faculty = faculty;
     }
 
     public Long getId() {
