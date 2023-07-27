@@ -8,22 +8,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
 @Service
 public class StudentService {
     private final Map<Long, Student> students = new HashMap<>();
     private long lastIdStudent = 0;
-
     public Student addStudent(Student student) {
         student.setId(++lastIdStudent);
         students.put(lastIdStudent, student);
-        return student;
+        return students.get(student.getId());
     }
     public Student findStudent(long id) {
+
         return students.get(id);
     }
     public Student editStudent(long id, Student student) {
-        students.put(student.getId(), student);
-        return student;
+        if (students.containsKey(id)) {
+            students.put(id, student);
+            return student;
+        }
+        return null;
     }
 
     public Student deleteStudent(long id) {
