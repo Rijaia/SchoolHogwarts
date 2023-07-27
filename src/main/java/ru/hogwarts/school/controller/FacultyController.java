@@ -38,7 +38,7 @@ public class FacultyController {
         return ResponseEntity.ok(faculty);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<Faculty> updateFaculty(@PathVariable long id, @RequestBody Faculty faculty) {
         Faculty updatedFaculty = facultyService.editFaculty(id, faculty);
         if (updatedFaculty == null) {
@@ -48,8 +48,9 @@ public class FacultyController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteFaculty(@PathVariable long id) {
-        facultyService.deleteFaculty(id);
+    public Faculty deleteFaculty(@PathVariable long id) {
+
+        return facultyService.deleteFaculty(id);
     }
 
     @GetMapping("/color")

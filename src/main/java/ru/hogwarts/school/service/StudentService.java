@@ -35,7 +35,9 @@ public class StudentService {
     }
 
     public Collection<Student> getAllStudentsByAge(int age) {
-        return students.values().stream().filter(it -> it.getAge() == age).collect(Collectors.toList());
+        return students.values().stream().
+                filter(it -> it.getAge() == age).
+                collect(Collectors.toList());
     }
 
 }
