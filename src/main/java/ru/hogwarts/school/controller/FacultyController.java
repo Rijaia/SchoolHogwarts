@@ -53,7 +53,7 @@ public class FacultyController {
         return facultyService.deleteFaculty(id);
     }
 
-    @GetMapping("/color")
+    @GetMapping("/color/{color}")
     public ResponseEntity<Collection<Faculty>> getAllFacultyByColor(@PathVariable String color) {
         return ResponseEntity.ok(facultyService.getAllFacultyByColor(color));
     }
