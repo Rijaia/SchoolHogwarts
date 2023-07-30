@@ -1,14 +1,7 @@
 package ru.hogwarts.school.controller;
 
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
@@ -53,8 +46,15 @@ public class StudentController {
         studentService.deleteStudent(id);
     }
 
-    @GetMapping("/age/{age}")
-    public ResponseEntity<Collection<Student>> getAllStudentsByAge(@PathVariable int age) {
+    @GetMapping("/age")
+    public ResponseEntity<Collection<Student>> getAllStudentsByAge(@RequestParam int age) {
         return ResponseEntity.ok(studentService.getAllStudentsByAge(age));
+    }
+
+    @GetMapping("/by-age-between")
+    public ResponseEntity<Collection<Student>> getAllStudentsByAgeBetween(
+            @RequestParam int min,
+            @RequestParam int max){
+        return ResponseEntity.ok(studentService.getAllStudentsByAgeBetween(min, max));
     }
 }
