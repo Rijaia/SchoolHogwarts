@@ -61,8 +61,8 @@ public class StudentController {
         studentService.deleteStudent(id);
     }
 
-    @GetMapping("/age")
-    public ResponseEntity<Collection<Student>> getAllStudentsByAge(@RequestParam int age) {
+    @GetMapping("/age/{age}")
+    public ResponseEntity<Collection<Student>> getAllStudentsByAge(@PathVariable int age) {
         return ResponseEntity.ok(studentService.getAllStudentsByAge(age));
     }
 
