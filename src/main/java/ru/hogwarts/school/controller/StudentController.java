@@ -19,6 +19,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/student")
@@ -101,11 +102,23 @@ public class StudentController {
         Avatar avatar = avatarService.findAvatar(studentId);
         Path path = Path.of(avatar.getFilePath());
         try (InputStream is = Files.newInputStream(path);
-             OutputStream os = response.getOutputStream();) {
+             OutputStream os = response.getOutputStream()) {
             response.setStatus(200);
             response.setContentType(avatar.getMediaType());
             response.setContentLength((int) avatar.getFileSize());
             is.transferTo(os);
         }
+    }
+    @GetMapping(value = "/total-number")
+    public int getNumberStudents() {
+        return studentService.getNumberStudents();
+    }
+    @GetMapping(value = "average-age")
+    public int getAverageAgeStudents() {
+        return studentService.getAverageAgeStudents();
+    }
+    @GetMapping(value = "last-five")
+    public List<Student> getFiveLastStudents() {
+        return studentService.getFiveLastStudents();
     }
 }
