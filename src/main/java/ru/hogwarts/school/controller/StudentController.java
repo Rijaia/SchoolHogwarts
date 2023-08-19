@@ -63,7 +63,8 @@ public class StudentController {
     }
 
     @GetMapping("/age")
-    public ResponseEntity<Collection<Student>> getAllStudentsByAge(@RequestParam int age) {
+    public ResponseEntity<Collection<Student>> getAllStudentsByAge(
+            @RequestParam int age) {
         return ResponseEntity.ok(studentService.getAllStudentsByAge(age));
     }
 
