@@ -94,4 +94,48 @@ public class StudentService {
         return studentRepository.findAll().stream().mapToDouble(Student::getAge)
                 .average().orElse(0.0);
     }
+
+    public void threads() {
+        List<Student> student = studentRepository.findAll();
+        printName(student.get(0));
+        printName(student.get(1));
+
+        new Thread(()-> {
+            printName(student.get(2));
+            printName(student.get(3));
+
+        }).start();
+
+        new Thread(()-> {
+            printName(student.get(4));
+            printName(student.get(5));
+
+        }).start();
+    }
+    public void threadsWithSynchronize() {
+        List<Student> student = studentRepository.findAll();
+        printNameSynchronized(student.get(0));
+        printNameSynchronized(student.get(1));
+
+        new Thread(()-> {
+            printNameSynchronized(student.get(2));
+            printNameSynchronized(student.get(3));
+
+        }).start();
+
+        new Thread(()-> {
+            printNameSynchronized(student.get(4));
+            printNameSynchronized(student.get(5));
+
+        }).start();
+    }
+
+
+
+    private void printName(Student student) {
+        System.out.println(student.getName());
+    }
+    private synchronized void printNameSynchronized(Student student) {
+        System.out.println(student.getName());
+    }
 }
