@@ -122,4 +122,22 @@ public class StudentController {
     public List<Student> getFiveLastStudents() {
         return studentService.getFiveLastStudents();
     }
+
+    @GetMapping("//name-starting-with/{start}")
+    public List<String> getStudentTheNameStartingWith(
+            @PathVariable String start
+    ) {
+        return studentService.getStudentTheNameStartingWith(start);
+    }
+
+    @GetMapping("////name-starting-with/A")
+    public List<String> getStudentByNameStartingWithA() {
+        return studentService.getStudentByNameStartingWithA();
+    }
+
+    @GetMapping("avarage-age-stream")
+    public Double getAverageAgeByString() {
+        return studentService.getAverageAgeByString();
+    }
+
 }
